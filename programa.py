@@ -67,12 +67,33 @@ while not digitou_corretamente:
 
 digitou_corretamente = False
 
+while not digitou_corretamente:
+    try:
+        consumo_energia = float(input("Quantos kWh de energia elétrica aproximadamente você utilizou hoje? "))
+    except ValueError:  # se der erro...
+        print("A quantidade deve ser um valor numérico; tente novamente!")
+    else:  # senão, ou seja, se não der erro...
+        if consumo_energia < 0:  # valor negativo não é válido
+            print("A quantidade não pode ser negativa!")
+        else:  # a quantidade de energia é válida
+            digitou_corretamente = True
+
+digitou_corretamente = False
+
 print("\nClassificação de sustentabilidade: \n")
 
 print("Classificação de água:")
 if consumo_litros_de_agua < 150:
     print("Alta sustentabilidade")
 elif consumo_litros_de_agua >= 150 and consumo_litros_de_agua < 200:
+    print("Média sustentabilidade")
+else:
+    print("Baixa sustentabilidade")
+
+print("Classificação de energia elétrica:")
+if consumo_energia < 5:
+    print("Alta sustentabilidade")
+elif consumo_energia >= 5 and consumo_energia < 10:
     print("Média sustentabilidade")
 else:
     print("Baixa sustentabilidade")
