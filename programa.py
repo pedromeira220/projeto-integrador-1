@@ -6,13 +6,14 @@ digitou_corretamente = False
 ano = 0
 mes = 0
 dia = 0
-litros_de_agua = 0
+consumo_litros_de_agua = 0
 
 ANO_ATUAL = 2025  # TODO: colocar o ano atual automaticamente
 
 print("Digite a data, começando pelo ano.")
 
-# TODO: avaliar se vamos deixar colocar dados históricos.
+# TODO: avaliar se vamos deixar colocar dados muito no passado
+# TODO: criar validação para dias do mês (não permitir 30 de fevereiro, ano bissexto ou coisa do tipo)
 
 while not digitou_corretamente:
     try:
@@ -55,15 +56,25 @@ digitou_corretamente = False
 
 while not digitou_corretamente:
     try:
-        litros_de_agua = float(input("Quantos litros de água aproximadamente você utilizou hoje? "))
+        consumo_litros_de_agua = float(input("Quantos litros de água aproximadamente você utilizou hoje? "))
     except ValueError:  # se der erro...
         print("A quantidade deve ser um valor numérico; tente novamente!")
     else:  # senão, ou seja, se não der erro...
-        if litros_de_agua < 0:  # valor negativo não é válido
+        if consumo_litros_de_agua < 0:  # valor negativo não é válido
             print("A quantidade não pode ser negativa!")
         else:  # a quantidade de água é válida
             digitou_corretamente = True
 
 digitou_corretamente = False
 
-# Aqui você pode adicionar outros campos para obter mais informações.
+print("\nClassificação de sustentabilidade: \n")
+
+print("Classificação de água:")
+if consumo_litros_de_agua < 150:
+    print("Alta sustentabilidade")
+elif consumo_litros_de_agua >= 150 and consumo_litros_de_agua < 200:
+    print("Média sustentabilidade")
+else:
+    print("Baixa sustentabilidade")
+
+print("\nFim do programa")
