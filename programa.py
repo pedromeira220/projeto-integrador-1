@@ -80,6 +80,51 @@ while not digitou_corretamente:
 
 digitou_corretamente = False
 
+while not digitou_corretamente:
+    try:
+        lixo_gerado = float(input("Quantos Kg de resíduos não reciclaveís você gerou hoje? "))
+    except ValueError:  # se der erro...
+        print("A quantidade deve ser um valor numérico; tente novamente!")
+    else:  # senão, ou seja, se não der erro...
+        if lixo_gerado < 0:  # valor negativo não é válido
+            print("A quantidade não pode ser negativa!")
+        else:  # a quantidade de residuo é válida
+            digitou_corretamente = True
+
+digitou_corretamente = False
+
+while not digitou_corretamente:
+    try:
+        lixo_reciclavel = int(input("Qual a porcentagem de resíduos reciclados no total (em %)? "))
+    except ValueError:  # se der erro...
+        print("A quantidade deve ser um valor numérico; tente novamente!")
+    else:  # senão, ou seja, se não der erro...
+        if lixo_reciclavel < 0:  # valor negativo não é válido
+            print("A quantidade não pode ser negativa!")
+        else:  # a quantidade de residuos reciclados é válida
+            digitou_corretamente = True
+
+digitou_corretamente = False
+
+while not digitou_corretamente:
+    try:
+        print('1. Transporte público (Ônibus, metrô, trem).\n'
+                '2. Bicicleta.\n'
+                '3. Caminhada.\n'
+                '4. Carro (combustivel fósseis).\n'
+                '5. Carro elétrico.\n'
+                '6. Carona compartilhada.')
+        meio_de_transporte = int(input("Qual o meio de transporte você usou hoje? "))
+    except ValueError:  # se der erro...
+        print("A quantidade deve ser um valor numérico; tente novamente!")
+    else:  # senão, ou seja, se não der erro...
+        if meio_de_transporte < 1 or meio_de_transporte > 6:  # valores fora da faixa dão erro
+            print("A quantidade tem de ser entre 1 e 6")
+        else:  # o meio de transporte escolhido é válida
+            digitou_corretamente = True
+
+digitou_corretamente = False
+
 print("\nClassificação de sustentabilidade: \n")
 
 print("Classificação de água:")
