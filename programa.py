@@ -143,4 +143,20 @@ elif consumo_energia >= 5 and consumo_energia < 10:
 else:
     print("Baixa sustentabilidade")
 
+print("Classificação de resíduos não reciclaveis:")
+if lixo_reciclavel > 50:
+    print("Alta sustentabilidade")
+elif lixo_reciclavel <50 and lixo_reciclavel > 10:
+    print("Média sustentabilidade")
+else:
+    print("Baixa sustentabilidade")
+
+print("Classificação de uso de transporte:")
+if meio_de_transporte ==2 or meio_de_transporte == 3 or meio_de_transporte == 5:
+    print("Alta sustentabilidade")
+elif meio_de_transporte == 1 or meio_de_transporte == 6:
+    print("Média sustentabilidade")
+else:
+    print("Baixa sustentabilidade")
+    
 print("\nFim do programa")
