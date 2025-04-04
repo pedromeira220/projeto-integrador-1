@@ -1,4 +1,4 @@
-print("Bem-vindo ao seu sistema de sustentabilidade pessoal!")
+print("\033[094mBem-vindo ao seu sistema de sustentabilidade pessoal!\033[m")
 print("O sistema classificará o seu nível de sustentabilidade diário com base no seu consumo de recursos.")
 print("Você digitará o dia e a média de consumo de recursos e o sistema exibirá a classificação.")
 
@@ -35,12 +35,12 @@ def dias_no_mes(mes, ano):
 
 while not digitou_corretamente:
     try:
-        ano = int(input("Qual o ano? "))
+        ano = int(input("Qual o ano?: "))
     except ValueError:  
-        print("O ano deve ser um inteiro; tente novamente!")
+        print("\033[91mO ano deve ser um inteiro; tente novamente!\033[m")
     else: 
         if ano < 2000 or ano > ANO_ATUAL:  # ano fora da faixa válida
-            print("O ano deve estar entre 2000 e 2025!")
+            print("\033[91mO ano deve estar entre 2000 e 2025!\033[m")
         else:  # o ano está na faixa válida
             digitou_corretamente = True
 
@@ -50,10 +50,10 @@ while not digitou_corretamente:
     try:
         mes = int(input("Qual o mês? "))
     except ValueError:  
-        print("O mês deve ser um inteiro; tente novamente!")
+        print("\033[91mO mês deve ser um inteiro; tente novamente!\033[m")
     else: 
         if mes < 1 or mes > 12:  # mês fora da faixa válida
-            print("O mês deve estar entre 1 e 12!")
+            print("\033[91mO mês deve estar entre 1 e 12!\033[m")
         else:  # o mês está na faixa válida
             digitou_corretamente = True
 
@@ -63,11 +63,11 @@ while not digitou_corretamente:
     try:
         dia = int(input("Qual o dia? "))
         if dia < 1 or dia > dias_no_mes(mes, ano): 
-            print(f"O mês {mes} no ano {ano} tem apenas {dias_no_mes(mes, ano)} dias! Tente novamente.")
+            print(f"\033[91mO mês {mes} no ano {ano} tem apenas {dias_no_mes(mes, ano)} dias! Tente novamente.\033[m")
         else:
             digitou_corretamente = True
     except ValueError:  
-        print("O dia deve ser um inteiro; tente novamente!")
+        print("\033[91mO dia deve ser um inteiro; tente novamente!\033[m")
 
 digitou_corretamente = False
 
@@ -75,10 +75,10 @@ while not digitou_corretamente:
     try:
         consumo_litros_de_agua = float(input("Quantos litros de água aproximadamente você utilizou hoje? "))
     except ValueError:  
-        print("A quantidade deve ser um valor numérico; tente novamente!")
+        print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
         if consumo_litros_de_agua < 0:  # valor negativo não é válido
-            print("A quantidade não pode ser negativa!")
+            print("\033[91mA quantidade não pode ser negativa!\033[m")
         else:  # a quantidade de água é válida
             digitou_corretamente = True
 
@@ -88,10 +88,10 @@ while not digitou_corretamente:
     try:
         consumo_energia = float(input("Quantos kWh de energia elétrica aproximadamente você utilizou hoje? "))
     except ValueError:  
-        print("A quantidade deve ser um valor numérico; tente novamente!")
+        print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
         if consumo_energia < 0:  # valor negativo não é válido
-            print("A quantidade não pode ser negativa!")
+            print("\033[91mA quantidade não pode ser negativa!\033[m")
         else:  # a quantidade de energia é válida
             digitou_corretamente = True
 
@@ -101,10 +101,10 @@ while not digitou_corretamente:
     try:
         lixo_gerado = float(input("Quantos Kg de resíduos não reciclaveís você gerou hoje? "))
     except ValueError:  
-        print("A quantidade deve ser um valor numérico; tente novamente!")
+        print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
         if lixo_gerado < 0:  # valor negativo não é válido
-            print("A quantidade não pode ser negativa!")
+            print("\033[91mA quantidade não pode ser negativa!\033[m")
         else:  # a quantidade de residuo é válida
             digitou_corretamente = True
 
@@ -114,10 +114,10 @@ while not digitou_corretamente:
     try:
         lixo_reciclavel = int(input("Qual a porcentagem de resíduos reciclados no total (em %)? "))
     except ValueError:  
-        print("A quantidade deve ser um valor numérico; tente novamente!")
+        print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
         if lixo_reciclavel < 0:  # valor negativo não é válido
-            print("A quantidade não pode ser negativa!")
+            print("\033[91mA quantidade não pode ser negativa!\033[m")
         else:  # a quantidade de residuos reciclados é válida
             digitou_corretamente = True
 
@@ -133,47 +133,47 @@ while not digitou_corretamente:
                 '6. Carona compartilhada.')
         meio_de_transporte = int(input("Qual o meio de transporte você mais usou hoje? ")) # o usuário poderá escolher apenas um meio de transporte
     except ValueError:  
-        print("A quantidade deve ser um valor numérico; tente novamente!")
+        print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
         if meio_de_transporte < 1 or meio_de_transporte > 6:  # valores fora da faixa dão erro
-            print("A quantidade tem de ser entre 1 e 6")
+            print("\033[91mA quantidade tem de ser entre 1 e 6\033[m")
         else:  # o meio de transporte escolhido é válida
             digitou_corretamente = True
 
 digitou_corretamente = False
 
-print("\nClassificação de sustentabilidade: \n")
+print("\n\033[096mTabela de classificação de sustentabilidade: \n\033[m")
 
 print("Classificação de água:")
 if consumo_litros_de_agua < 150:
-    print("Alta sustentabilidade")
+    print("\033[92mAlta sustentabilidade.\033[m")
 elif consumo_litros_de_agua >= 150 and consumo_litros_de_agua < 200:
-    print("Média sustentabilidade")
+    print("\033[93mMédia sustentabilidade.\033[m")
 else:
-    print("Baixa sustentabilidade")
+    print("\033[91mBaixa sustentabilidade\033[m")
 
 print("Classificação de energia elétrica:")
 if consumo_energia < 5:
-    print("Alta sustentabilidade")
+    print("\033[92mAlta sustentabilidade.\033[m")
 elif consumo_energia >= 5 and consumo_energia < 10:
-    print("Média sustentabilidade")
+    print("\033[93mMédia sustentabilidade.\033[m")
 else:
-    print("Baixa sustentabilidade")
+    print("\033[91mBaixa sustentabilidade\033[m")
 
 print("Classificação de resíduos não reciclaveis:")
 if lixo_reciclavel > 50:
-    print("Alta sustentabilidade")
+    print("\033[92mAlta sustentabilidade.\033[m")
 elif lixo_reciclavel < 50 and lixo_reciclavel > 10:
-    print("Média sustentabilidade")
+    print("\033[93mMédia sustentabilidade.\033[m")
 else:
-    print("Baixa sustentabilidade")
+    print("\033[91mBaixa sustentabilidade\033[m")
 
 print("Classificação de uso de transporte:")
 if meio_de_transporte == 1 or meio_de_transporte == 2 or meio_de_transporte == 3:
-    print("Alta sustentabilidade")
+    print("\033[92mAlta sustentabilidade.\033[m")
 elif meio_de_transporte == 4:   
-    print("Média sustentabilidade")
+    print("\033[93mMédia sustentabilidade.\033[m")
 else:
-    print("Baixa sustentabilidade")
+    print("\033[91mBaixa sustentabilidade\033[m")
     
-print("\nFim do programa")
+print("\nFim do programa.")
