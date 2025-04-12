@@ -12,8 +12,6 @@ ANO_ATUAL = 2025  # TODO: colocar o ano atual automaticamente
 
 print("Digite a data, começando pelo ano.")
 
-# TODO: criar validação para dias do mês (não permitir 30 de fevereiro, ano bissexto ou coisa do tipo)
-
 def ano_bissexto(ano):
     return (ano % 4 == 0 and (ano % 100 != 0 or ano % 400 == 0))
 
@@ -73,7 +71,7 @@ digitou_corretamente = False
 
 while not digitou_corretamente:
     try:
-        consumo_litros_de_agua = float(input("Quantos litros de água aproximadamente você utilizou hoje? "))
+        consumo_litros_de_agua = float(input("Quantos litros de água aproximadamente você utilizou hoje? (Caso deseje usar decimal utilize . ao inves de ,) "))
     except ValueError:  
         print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
@@ -89,9 +87,9 @@ digitou_corretamente = False
 
 while not digitou_corretamente:
     try:
-        consumo_energia = float(input("Quantos kWh de energia elétrica aproximadamente você utilizou hoje? "))
+        consumo_energia = int(input("Quantos kWh de energia elétrica aproximadamente você utilizou hoje? "))
     except ValueError:  
-        print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
+        print("\033[91mA quantidade deve ser um valor inteiro; tente novamente!\033[m")
     else: 
         if consumo_energia <= 0:  # valor negativo não é válido
             print("\033[91mA quantidade não pode ser negativa!\033[m")
@@ -119,7 +117,7 @@ digitou_corretamente = False
 
 while not digitou_corretamente:
     try:
-        lixo_reciclavel = int(input("Qual a porcentagem de resíduos reciclados no total (em %)? "))
+        lixo_reciclavel = float(input("Qual a porcentagem de resíduos reciclados no total (em %)? "))
     except ValueError:  
         print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
@@ -138,7 +136,7 @@ while not digitou_corretamente:
                 '4. Carro (combustivel fósseis).\n'
                 '5. Carro elétrico.\n'
                 '6. Carona compartilhada.')
-        meio_de_transporte = int(input("Qual o meio de transporte você mais usou hoje? ")) # o usuário poderá escolher apenas um meio de transporte
+        meio_de_transporte = int(input("Qual o meio de transporte você mais usou hoje dos listados acima? ")) # o usuário poderá escolher apenas um meio de transporte
     except ValueError:  
         print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
@@ -150,6 +148,8 @@ while not digitou_corretamente:
 digitou_corretamente = False
 
 print("\n\033[096mTabela de classificação de sustentabilidade: \n\033[m")
+
+print("água", consumo_litros_de_agua)
 
 print("Classificação de água:")
 if consumo_litros_de_agua < 150:
@@ -183,4 +183,4 @@ elif meio_de_transporte == 4:
 else:
     print("\033[91mBaixa sustentabilidade\033[m")
     
-print("\nFim do programa.")
+print("\nFim do programa")
