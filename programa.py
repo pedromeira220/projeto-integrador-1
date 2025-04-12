@@ -77,9 +77,12 @@ while not digitou_corretamente:
     except ValueError:  
         print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
-        if consumo_litros_de_agua < 0:  # valor negativo não é válido
+        if consumo_litros_de_agua <= 0 :  # valor negativo não é válido
             print("\033[91mA quantidade não pode ser negativa!\033[m")
-        else:  # a quantidade de água é válida
+        elif consumo_litros_de_agua >= 1000000 :
+            print("\033[91mA quantidade de agua não pode ser muito alta!\033[m")
+        else:
+            # a quantidade de água é válida
             digitou_corretamente = True
 
 digitou_corretamente = False
@@ -90,8 +93,10 @@ while not digitou_corretamente:
     except ValueError:  
         print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
-        if consumo_energia < 0:  # valor negativo não é válido
+        if consumo_energia <= 0:  # valor negativo não é válido
             print("\033[91mA quantidade não pode ser negativa!\033[m")
+        elif consumo_energia >= 10000 :
+            print("\033[91mA quantidade de energia não pode ser muito alta!\033[m")
         else:  # a quantidade de energia é válida
             digitou_corretamente = True
 
@@ -103,8 +108,10 @@ while not digitou_corretamente:
     except ValueError:  
         print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
-        if lixo_gerado < 0:  # valor negativo não é válido
+        if lixo_gerado <= 0:  # valor negativo não é válido
             print("\033[91mA quantidade não pode ser negativa!\033[m")
+        elif lixo_gerado >= 1000:
+            print("\033[91mEssa quantidade não é realista!\033[m")
         else:  # a quantidade de residuo é válida
             digitou_corretamente = True
 
@@ -116,8 +123,8 @@ while not digitou_corretamente:
     except ValueError:  
         print("\033[91mA quantidade deve ser um valor numérico; tente novamente!\033[m")
     else: 
-        if lixo_reciclavel < 0:  # valor negativo não é válido
-            print("\033[91mA quantidade não pode ser negativa!\033[m")
+        if lixo_reciclavel <= 0 or lixo_reciclavel > 100:  # valor negativo não é válido
+            print("\033[91mEssa quantidade não é real!\033[m")
         else:  # a quantidade de residuos reciclados é válida
             digitou_corretamente = True
 
