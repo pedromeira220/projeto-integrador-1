@@ -1,3 +1,13 @@
+import mysql.connector
+def obtemConexao (servidor,usuario,senha,bd):
+    if obtemConexao.conexao == None:
+        obtemConexao.conexao == mysql.connector.connect(host="172.16.12.14",\
+                                                        user="BD240225247",\
+                                                        password="Ioskd9",\
+                                                        database="BD240225247")
+    return obtemConexao.conexao
+obtemConexao.conexao == None
+        
 print("\033[094mBem-vindo ao seu sistema de sustentabilidade pessoal!\033[m")
 print("O sistema classificará o seu nível de sustentabilidade diário com base no seu consumo de recursos.")
 print("Você digitará o dia e a média de consumo de recursos e o sistema exibirá a classificação.")
