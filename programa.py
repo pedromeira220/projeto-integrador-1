@@ -1,12 +1,12 @@
 import mysql.connector
-def obtemConexao (servidor,usuario,senha,bd):
-    if obtemConexao.conexao == None:
-        obtemConexao.conexao == mysql.connector.connect(host="172.16.12.14",\
-                                                        user="BD240225247",\
-                                                        password="Ioskd9",\
-                                                        database="BD240225247")
-    return obtemConexao.conexao
-obtemConexao.conexao == None
+
+conexao = mysql.connector.connect(
+    host="172.16.12.14",
+    user="BD240225247",
+    password="Ioskd9",
+    database="BD240225247"
+)
+cursor = conexao.cursor()
         
 print("\033[094mBem-vindo ao seu sistema de sustentabilidade pessoal!\033[m")
 print("O sistema classificará o seu nível de sustentabilidade diário com base no seu consumo de recursos.")
@@ -157,40 +157,77 @@ while not digitou_corretamente:
 
 digitou_corretamente = False
 
+data = f"{ano}-{mes:02d}-{dia:02d}"
+query = """
+INSERT INTO registros_sustentabilidade (
+    data_registro, consumo_agua_litros, consumo_energia_kwh,
+    residuos_nao_reciclaveis_kg, percentual_reciclado, meio_transporte_codigo
+) VALUES (%s, %s, %s, %s, %s, %s)
+"""
+valores = (data, consumo_litros_de_agua, consumo_energia, lixo_gerado, lixo_reciclavel, meio_de_transporte)
+cursor.execute(query, valores)
+conexao.commit()
+print("\n\033[92mDados inseridos com sucesso!\033[m")
+
+cursor.execute("SELECT * FROM registros_sustentabilidade ORDER BY id_registro DESC LIMIT 1")
+registro = cursor.fetchone()
+
+agua = registro[2]
+energia = registro[3]
+residuos = registro[4]
+reciclado = registro[5]
+transporte = registro[6]
+
 print("\n\033[096mTabela de classificação de sustentabilidade: \n\033[m")
 
-print("água", consumo_litros_de_agua)
 
 print("Classificação de água:")
-if consumo_litros_de_agua < 150:
+if agua < 150:
     print("\033[92mAlta sustentabilidade.\033[m")
-elif consumo_litros_de_agua >= 150 and consumo_litros_de_agua < 200:
+elif agua >= 150 and agua < 200:
     print("\033[93mMédia sustentabilidade.\033[m")
 else:
     print("\033[91mBaixa sustentabilidade\033[m")
 
 print("Classificação de energia elétrica:")
-if consumo_energia < 5:
+if residuos < 5:
     print("\033[92mAlta sustentabilidade.\033[m")
-elif consumo_energia >= 5 and consumo_energia < 10:
+elif residuos >= 5 and residuos < 10:
     print("\033[93mMédia sustentabilidade.\033[m")
 else:
     print("\033[91mBaixa sustentabilidade\033[m")
 
 print("Classificação de resíduos não reciclaveis:")
-if lixo_reciclavel > 50:
+if reciclado > 50:
     print("\033[92mAlta sustentabilidade.\033[m")
-elif lixo_reciclavel < 50 and lixo_reciclavel > 10:
+elif reciclado < 50 and reciclado > 10:
     print("\033[93mMédia sustentabilidade.\033[m")
 else:
     print("\033[91mBaixa sustentabilidade\033[m")
 
 print("Classificação de uso de transporte:")
-if meio_de_transporte == 1 or meio_de_transporte == 2 or meio_de_transporte == 3:
+if transporte == 1 or transporte == 2 or transporte == 3:
     print("\033[92mAlta sustentabilidade.\033[m")
-elif meio_de_transporte == 4:   
+elif transporte == 4:   
     print("\033[93mMédia sustentabilidade.\033[m")
 else:
     print("\033[91mBaixa sustentabilidade\033[m")
     
+print("\n\033[94mMédias de sustentabilidade:\033[m")
+cursor.execute("""
+SELECT 
+    ROUND(AVG(consumo_agua_litros),2),
+    ROUND(AVG(consumo_energia_kwh),2),
+    ROUND(AVG(residuos_nao_reciclaveis_kg),2),
+    ROUND(AVG(percentual_reciclado),2),
+    ROUND(AVG(meio_transporte_codigo),2)
+FROM registros_sustentabilidade;
+""")
+medias = cursor.fetchone()
+print(f"Média de água (L): {medias[0]}")
+print(f"Média de energia (kWh): {medias[1]}")
+print(f"Média de resíduos não recicláveis (Kg): {medias[2]}")
+print(f"Média de reciclado (%): {medias[3]}")
+print(f"Média de transporte (cód. 1-6): {medias[4]}")
+
 print("\nFim do programa")
