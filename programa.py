@@ -219,8 +219,7 @@ SELECT
     ROUND(AVG(consumo_agua_litros),2),
     ROUND(AVG(consumo_energia_kwh),2),
     ROUND(AVG(residuos_nao_reciclaveis_kg),2),
-    ROUND(AVG(percentual_reciclado),2),
-    ROUND(AVG(meio_transporte_codigo),2)
+    ROUND(AVG(percentual_reciclado),2)
 FROM registros_sustentabilidade;
 """)
 medias = cursor.fetchone()
@@ -228,6 +227,5 @@ print(f"Média de água (L): {medias[0]}")
 print(f"Média de energia (kWh): {medias[1]}")
 print(f"Média de resíduos não recicláveis (Kg): {medias[2]}")
 print(f"Média de reciclado (%): {medias[3]}")
-print(f"Média de transporte (cód. 1-6): {medias[4]}")
 
 print("\nFim do programa")
